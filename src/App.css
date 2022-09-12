@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Roseritta Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Roseritta Regular'), url('Roseritta.woff') format('woff');
+}
+
+h1 {
+  font-family: 'Roseritta Regular';
+}

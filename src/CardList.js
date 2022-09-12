@@ -1,8 +1,6 @@
 import React from 'react';
 import Card from './Card'
-import { robots } from './robots';
-
-const CardList = () => {
+const CardList = ({ robots }) => {
   return (
    <div>
     {
@@ -13,12 +11,11 @@ const CardList = () => {
             id={user.id}
             name={user.name}
             email={user.email}
-            />
+          />
         );
       })
     }
    </div>
   )
 }
-
 export default CardList;
