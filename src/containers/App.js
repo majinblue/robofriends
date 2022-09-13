@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import CardList from './CardList';
-import SearchBox from './SearchBox'
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox'
+import Scroll from '../components/Scroll'
 import './App.css'
 
 class App extends Component {
@@ -26,23 +27,25 @@ class App extends Component {
 
   // Runs immediately after the constructor 
   render() {
+    const {robots, searchfield} = this.state;
     // Gathers an array of all the robots whose names include the current value of the 'searchfield' state
-    const filteredRobots = this.state.robots.filter(robot => {
+    const filteredRobots = robots.filter(robot => {
       // Returns the robot objects that meet the criteria described below
-      return robot.name.toString().toLowerCase().includes(this.state.searchfield.toString().toLowerCase())
+      return robot.name.toString().toLowerCase().includes(searchfield.toString().toLowerCase())
     })
-    // While the current array of robots is empty, proceed to show loading
-    if (this.state.robots.length === 0) {
-      return <h1 className='tc'>Loading...</h1>
-    } else {
-      return (
+    // While the current array of robots is empty, proceed to show 'Loading'...
+    return !robots.length ?
+      <h1 className='tc'>Loading...</h1>:
+      // Otherwise, render the JSX below
+      (
         <div className='tc'>
           <h1 className='f1'>RoboFriends</h1>
           <SearchBox searchChange={this.onSearchChange}/>
-          <CardList robots={filteredRobots} />
+          <Scroll>
+            <CardList robots={filteredRobots} />
+          </Scroll>
         </div>
       )
-    }
   }
 }
 export default App;
